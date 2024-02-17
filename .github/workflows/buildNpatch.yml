@@ -5,11 +5,15 @@ on:
     branches:
       - main
   schedule:
-  - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -28,7 +32,6 @@ jobs:
       - name: Apply patches
         run: |
           cd gotosocial
-          ls -la .
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
           git config --global user.name "${{ github.actor }}"
           git am ../patches/*.patch
@@ -43,11 +46,18 @@ jobs:
       - name: Setup buildx
         uses: docker/setup-buildx-action@v1
 
+      - name: Login to Github Packages
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build image and push to GitHub Container Registry
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ./gotosocial
           file: ./gotosocial/Dockerfile
           platforms: linux/amd64
-          tags: |
-            ghcr.io/thekitty-zone/custom-gotosocial:latest
+          push: true
+          tags: ghcr.io/thekitty-zone/custom-gotosocial:latest

@@ -634,8 +634,6 @@ index dc727d14..2f510d9f 100644
 -        src="{{- .instance.Thumbnail -}}"
 -        alt="{{- template "thumbnailDescription" . -}}"
 -        title="{{- template "thumbnailDescription" . -}}"
--        width="100"
--        height="100"
 -    />
 -    <h1>{{- .instance.Title -}}</h1>
 -</a>

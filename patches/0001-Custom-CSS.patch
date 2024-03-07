@@ -625,7 +625,7 @@ diff --git a/web/template/page_header.tmpl b/web/template/page_header.tmpl
 index dc727d14..2f510d9f 100644
 --- a/web/template/page_header.tmpl
 +++ b/web/template/page_header.tmpl
-@@ -56,17 +56,5 @@ Instance Logo
+@@ -56,15 +56,5 @@ Instance Logo
  {{- end -}}
  
  {{- with . }}

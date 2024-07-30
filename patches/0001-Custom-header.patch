@@ -1,0 +1,42 @@
+From a88f61b4afb0f73c88cf57c3e6604446ff896c05 Mon Sep 17 00:00:00 2001
+From: 89Q12 <zofi@xamh.de>
+Date: Tue, 30 Jul 2024 12:46:01 +0200
+Subject: [PATCH] Custom header
+
+---
+ web/template/page_header.tmpl | 21 +--------------------
+ 1 file changed, 1 insertion(+), 20 deletions(-)
+
+diff --git a/web/template/page_header.tmpl b/web/template/page_header.tmpl
+index 388587aa..95e00fc5 100644
+--- a/web/template/page_header.tmpl
++++ b/web/template/page_header.tmpl
+@@ -56,24 +56,5 @@ Instance Logo
+ {{- end -}}
+ 
+ {{- with . }}
+-<a aria-label="{{- .instance.Title -}}. Go to instance homepage" href="/" class="nounderline">
+-    <picture>
+-        {{- if .instance.ThumbnailStatic }}
+-        <source
+-            srcset="{{- .instance.ThumbnailStatic -}}"
+-            type="{{- .instance.ThumbnailStaticType -}}"
+-            media="(prefers-reduced-motion: reduce)"
+-        />
+-        {{- end }}
+-        <img
+-            src="{{- .instance.Thumbnail -}}"
+-            alt="{{- template "thumbnailDescription" . -}}"
+-            title="{{- template "thumbnailDescription" . -}}"
+-        />
+-    </picture>
+-    <h1>{{- .instance.Title -}}</h1>
+-</a>
+-{{- if .showStrap }}
+-<aside>home to {{ template "strapUsers" . }} who wrote {{ template "strapPosts" . }}, federating with {{ template "strapInstances" . }}</aside>
+-{{- end }}
++<aside>Blog with {{ template "strapPosts" . }},that federats with {{ template "strapInstances" . }}</aside>
+ {{- end }}
+\ No newline at end of file
+-- 
+2.34.1

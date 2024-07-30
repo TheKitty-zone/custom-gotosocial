@@ -621,28 +621,6 @@ index 347caf33..ece42dde 100644
              {{- include "page_header.tmpl" . | indent 3 }}
          </header>
          <div class="page-content">
-diff --git a/web/template/page_header.tmpl b/web/template/page_header.tmpl
-index dc727d14..2f510d9f 100644
---- a/web/template/page_header.tmpl
-+++ b/web/template/page_header.tmpl
-@@ -56,15 +56,5 @@ Instance Logo
- {{- end -}}
- 
- {{- with . }}
--<a aria-label="{{- .instance.Title -}}. Go to instance homepage" href="/" class="nounderline">
--    <img
--        src="{{- .instance.Thumbnail -}}"
--        alt="{{- template "thumbnailDescription" . -}}"
--        title="{{- template "thumbnailDescription" . -}}"
--    />
--    <h1>{{- .instance.Title -}}</h1>
--</a>
--{{- if .showStrap }}
--<aside>home to {{ template "strapUsers" . }} who wrote {{ template "strapPosts" . }}, federating with {{ template "strapInstances" . }}</aside>
-+<aside>Blog with {{ template "strapPosts" . }},that federats with {{ template "strapInstances" . }}</aside>
- {{- end }}
--{{- end }}
-\ No newline at end of file
 diff --git a/web/template/page_stylesheets.tmpl b/web/template/page_stylesheets.tmpl
 index 9234607f..7725bbff 100644
 --- a/web/template/page_stylesheets.tmpl
